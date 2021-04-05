@@ -7,7 +7,7 @@ import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { Drawer, AppBar, Toolbar, Avatar, IconButton } from "@material-ui/core";
 import NoteIcon from "@material-ui/icons/Note";
 import { AddCircleOutlined } from "@material-ui/icons";
-import { useStyles } from "./layout.styles";
+import { useStyles } from "../styles/layout.styles";
 
 const Layout = ({ children }) => {
   const classes = useStyles();
