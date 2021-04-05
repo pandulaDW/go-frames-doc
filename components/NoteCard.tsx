@@ -3,10 +3,7 @@ import { Card, CardHeader, CardContent, Avatar } from "@material-ui/core";
 import { makeStyles, Typography, IconButton } from "@material-ui/core";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import { blue, green, pink, yellow } from "@material-ui/core/colors";
-
-interface Note {
-  category: string;
-}
+import { Note } from "../models/Note";
 
 const useStyles = makeStyles({
   avatar: {
@@ -25,7 +22,12 @@ const useStyles = makeStyles({
   },
 });
 
-const NoteCard = ({ note, handleDelete }) => {
+interface Props {
+  note: Note;
+  handleDelete: (id: number) => Promise<void>;
+}
+
+const NoteCard: React.FC<Props> = ({ note, handleDelete }) => {
   const classes = useStyles(note);
 
   return (

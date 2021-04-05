@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { GetStaticProps } from "next";
 import { Container, Grid } from "@material-ui/core";
 import NoteCard from "../components/NoteCard";
+import { Note } from "../models/Note";
 
-export default function Notes() {
-  const [notes, setNotes] = useState([]);
+interface Props {
+  notes: Array<Note>;
+}
 
-  useEffect(() => {
-    fetch("http://localhost:8000/notes")
-      .then((res) => res.json())
-      .then((data) => setNotes(data));
-  }, []);
+const Notes: React.FC<Props> = ({ notes: initialNotes }) => {
+  const [notes, setNotes] = useState(initialNotes);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: number) => {
     await fetch(`http://localhost:8000/notes/${id}`, {
       method: "DELETE",
     });
@@ -31,4 +31,15 @@ export default function Notes() {
       </Grid>
     </Container>
   );
-}
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch("http://localhost:8000/notes");
+  const data = (await response.json()) as Props;
+
+  return {
+    props: { notes: data },
+  };
+};
+
+export default Notes;
