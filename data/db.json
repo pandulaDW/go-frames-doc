@@ -1,0 +1,34 @@
+{
+  "notes": [
+    {
+      "title": "Yoshi's birthday bash",
+      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "category": "reminders",
+      "id": 1
+    },
+    {
+      "title": "Complete my ninja training",
+      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.",
+      "category": "work",
+      "id": 2
+    },
+    {
+      "title": "Order a pizza!",
+      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "category": "todos",
+      "id": 3
+    },
+    {
+      "title": "gota sir",
+      "details": "Lieutenant Colonel Nandasena Gotabaya Rajapaksa, RWP, RSP, psc, GR is a Sri Lankan politician and former military officer currently serving as the 8th President of Sri Lanka since 2019",
+      "category": "money",
+      "id": 4
+    },
+    {
+      "title": "namal sir",
+      "details": "Lakshman Namal Rajapaksa is a Sri Lankan politician. He is one of three sons of Sri Lankan former President and current Prime Minister Mahinda Rajapaksa and a member of parliament. It was widely believed that Rajapaksa was to be groomed to succeed his father. He is the current Minister of Youth and Sports ",
+      "category": "todos",
+      "id": 5
+    }
+  ]
+}

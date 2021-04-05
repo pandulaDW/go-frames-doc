@@ -1,53 +1,34 @@
-import Head from "next/head";
-import { GetStaticProps } from "next";
-import { gql, request } from "graphql-request";
-import { PersonCollection } from "../models/Person";
+import React, { useState, useEffect } from "react";
+import { Container, Grid } from "@material-ui/core";
+import NoteCard from "../components/NoteCard";
 
-interface Props {
-  collection: PersonCollection["personCollection"]["items"];
-}
+export default function Notes() {
+  const [notes, setNotes] = useState([]);
 
-export default function Home(props: Props) {
-  if (!props.collection) {
-    return <h1>Loading...</h1>;
-  }
+  useEffect(() => {
+    fetch("http://localhost:8000/notes")
+      .then((res) => res.json())
+      .then((data) => setNotes(data));
+  }, []);
+
+  const handleDelete = async (id) => {
+    await fetch(`http://localhost:8000/notes/${id}`, {
+      method: "DELETE",
+    });
+
+    const remainingNotes = notes.filter((note) => note.id !== id);
+    setNotes(remainingNotes);
+  };
 
   return (
-    <div>
-      <Head>
-        <title>TS-Contentful</title>
-      </Head>
-      <ul>
-        {props.collection.map((person) => (
-          <li key={person.sys.id}>
-            {person.name} is of {person.age} years old.
-          </li>
+    <Container>
+      <Grid container spacing={3}>
+        {notes.map((note) => (
+          <Grid item key={note.id} xs={12} md={6} lg={4}>
+            <NoteCard note={note} handleDelete={handleDelete} />
+          </Grid>
         ))}
-      </ul>
-    </div>
+      </Grid>
+    </Container>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const query = gql`
-    {
-      personCollection {
-        items {
-          name
-          age
-          sys {
-            id
-          }
-        }
-      }
-    }
-  `;
-
-  const { GQL_BASE_URL, CMS_SPACE_ID, CMS_API_KEY } = process.env;
-  const url = `https://${GQL_BASE_URL}/v1/spaces/${CMS_SPACE_ID}?access_token=${CMS_API_KEY}`;
-  const { personCollection } = await request<PersonCollection>(url, query);
-
-  return {
-    props: { collection: personCollection.items },
-  };
-};
